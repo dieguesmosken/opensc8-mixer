@@ -1,0 +1,12 @@
+[Unit]
+Description=OpenSC8 Mixer - roteador de programas para canais
+After=pipewire-pulse.service wireplumber.service
+Wants=pipewire-pulse.service wireplumber.service
+
+[Service]
+ExecStart=@BIN@/opensc8-mixer --router
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=default.target
