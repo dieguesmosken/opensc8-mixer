@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=OpenSC8 Mixer
+Comment=Mixer de canais e soundboard para a fifine SC8
+Exec=@BIN@/opensc8-mixer
+Icon=audio-card
+Terminal=false
+Categories=AudioVideo;Audio;Mixer;
+Keywords=fifine;sc8;mixer;áudio;soundboard;

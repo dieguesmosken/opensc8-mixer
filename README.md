@@ -8,12 +8,12 @@ O app oficial da Fifine, o FIFINE Genie, só existe para Windows. No Linux a SC8
 
 ## Status
 
-Em desenvolvimento. Ainda não há uma versão pronta para uso.
+Em desenvolvimento. As fases 0 e 1 já funcionam e foram testadas no Pop!_OS com PipeWire 1.6.8, mas ainda não há uma versão publicada.
 
 | Fase | O que entrega | Situação |
 | --- | --- | --- |
-| 0 | As duas saídas da SC8 ("SC8 Chat" e "SC8 Game") visíveis e com volume certo | Em andamento |
-| 1 | Canais virtuais por programa, mix do fone, mix da live ("SC8 Stream"), app gráfico e soundboard | Em andamento |
+| 0 | As duas saídas da SC8 ("SC8 Chat" e "SC8 Game") visíveis e com volume certo | Pronta para testes |
+| 1 | Canais virtuais por programa, mix do fone, mix da live ("SC8 Stream"), app gráfico e soundboard | Pronta para testes |
 | 2 | EQ de até 10 pontos e redução de ruído no PC | Planejada |
 | 3 | Funções internas da mesa (presets de EQ, voice changer, surround, luzes) | Depende de engenharia reversa |
 
@@ -40,12 +40,10 @@ Microfone SC8 ──────────────────────
 ## Requisitos
 
 - Linux com PipeWire 1.0 ou mais novo e WirePlumber (testado no Pop!_OS com PipeWire 1.6.8)
-- Python 3.10 ou mais novo, com PyGObject e GTK 4 (libadwaita é opcional)
+- Python 3.10 ou mais novo, com PyGObject e GTK 3 (`python3-gi` e `gir1.2-gtk-3.0`). A migração para GTK 4 está planejada
 - A chave traseira da SC8 na posição **PC**
 
 ## Instalação
-
-As instruções completas entram aqui com a primeira versão. O fluxo previsto:
 
 ```bash
 git clone https://github.com/dieguesmosken/opensc8-mixer.git
@@ -53,10 +51,13 @@ cd opensc8-mixer
 ./install.sh      # instala para o seu usuário, sem sudo
 ```
 
-Para remover: `./uninstall.sh`. Para voltar o áudio ao estado anterior à instalação: `./rollback.sh`.
+Para remover: `./uninstall.sh` (com `--purge` apaga também a configuração). Para voltar o áudio ao estado anterior à instalação: `./rollback.sh`.
+
+No OBS, adicione uma fonte de captura de entrada de áudio e escolha **SC8 Stream**. Detalhes em [docs/uso.md](docs/uso.md).
 
 ## Documentação
 
+- [Uso](docs/uso.md): instalação, canais, regras por programa, soundboard e OBS
 - [Hardware da SC8](docs/hardware.md): descritores USB, interfaces e o que já se sabe do protocolo
 - [Como contribuir](CONTRIBUTING.md)
 - [Instruções para agentes de IA](AGENTS.md)

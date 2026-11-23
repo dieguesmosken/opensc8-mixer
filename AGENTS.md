@@ -6,15 +6,22 @@ Instruções para agentes de IA (Claude Code, Codex, Copilot e similares) que tr
 
 OpenSC8 Mixer é um mixer para a mesa de som Fifine AmpliGame SC8 (USB `3142:0c88`) no Linux. Ele substitui o FIFINE Genie, que só existe para Windows.
 
-- Fases 0 e 1 são **só software** sobre o PipeWire: canais virtuais, mix do fone, mix da live ("SC8 Stream"), regras por programa, app GTK4 e soundboard. Não falam com a mesa por HID.
+- Fases 0 e 1 são **só software** sobre o PipeWire: canais virtuais, mix do fone, mix da live ("SC8 Stream"), regras por programa, app gráfico e soundboard. Não falam com a mesa por HID.
 - Fase 2: EQ e redução de ruído com filtros do PipeWire.
 - Fase 3: funções internas da mesa pela interface HID 5, que depende de capturas do Genie.
 
-Detalhes do hardware: [docs/hardware.md](docs/hardware.md).
+Detalhes do hardware: [docs/hardware.md](docs/hardware.md). Uso e arquitetura do áudio: [docs/uso.md](docs/uso.md).
+
+## Estrutura
+
+- `opensc8_mixer/`: pacote Python. `app.py` (interface), `router.py` (serviço que move streams e religa a SC8), `pwconf.py` (gera a config do PipeWire), `pw.py` (chamadas a `pw-*`/`wpctl`/`pactl`), `config.py`, `soundboard.py`
+- `data/`: `.desktop`, unidade systemd de usuário e regra do WirePlumber
+- `install.sh`, `uninstall.sh`, `rollback.sh`
+- `tests/`: testes de áudio e latência que precisam da SC8 conectada
 
 ## Stack
 
-- Python 3.10+, PyGObject, GTK 4 (libadwaita opcional, com fallback para GTK puro)
+- Python 3.10+, PyGObject, GTK 3 hoje (migração para GTK 4/libadwaita planejada, quando `gir1.2-gtk-4.0` estiver disponível)
 - PipeWire 1.0+ e WirePlumber. Configurações geradas em `$XDG_CONFIG_HOME/pipewire/pipewire.conf.d/` e `$XDG_CONFIG_HOME/wireplumber/wireplumber.conf.d/`
 - Configuração do app em `$XDG_CONFIG_HOME/opensc8-mixer/config.json`
 - Ferramentas usadas em tempo de execução: `pw-cli`, `pw-dump`, `pw-link`, `wpctl`, `pw-play`, `amixer`
