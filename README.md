@@ -58,6 +58,7 @@ No OBS, adicione uma fonte de captura de entrada de áudio e escolha **SC8 Strea
 ## Documentação
 
 - [Uso](docs/uso.md): instalação, canais, regras por programa, soundboard e OBS
+- [Diagnóstico e captura](docs/diagnostico.md): como capturar o protocolo do Genie no Windows e coletar dados no Linux
 - [Hardware da SC8](docs/hardware.md): descritores USB, interfaces e o que já se sabe do protocolo
 - [Como contribuir](CONTRIBUTING.md)
 - [Instruções para agentes de IA](AGENTS.md)
