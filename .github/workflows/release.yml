@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag existente para (re)publicar, ex. v0.1.0"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ github.event.inputs.tag || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.TAG }}
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verificar sintaxe do Python
+        run: python -m compileall -q .
+
+      - name: Gerar pacote
+        run: |
+          NAME="opensc8-mixer-${TAG#v}"
+          mkdir -p dist
+          git archive --format=tar.gz --prefix="${NAME}/" -o "dist/${NAME}.tar.gz" "$TAG"
+          cd dist && sha256sum "${NAME}.tar.gz" > "${NAME}.tar.gz.sha256"
+          ls -l
+
+      - name: Publicar release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          name: OpenSC8 Mixer ${{ env.TAG }}
+          generate_release_notes: true
+          prerelease: ${{ startsWith(env.TAG, 'v0.') }}
+          files: |
+            dist/*.tar.gz
+            dist/*.sha256
