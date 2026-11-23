@@ -5,7 +5,7 @@ Obrigado por querer ajudar. O OpenSC8 Mixer é um projeto pequeno e toda ajuda c
 ## Formas de ajudar
 
 - **Testar em outra distro** e abrir uma issue dizendo o que funcionou e o que não funcionou. Inclua a saída de `pipewire --version`, `wpctl status` e `lsusb -d 3142:0c88`.
-- **Capturar o protocolo do FIFINE Genie** no Windows. É o que destrava a fase 3. O passo a passo está em [docs/hardware.md](docs/hardware.md#como-capturar-o-protocolo).
+- **Capturar o protocolo do FIFINE Genie** no Windows. É o que destrava a fase 3. O passo a passo está em [docs/diagnostico.md](docs/diagnostico.md).
 - **Código**: veja as issues abertas ou proponha uma melhoria numa issue antes de começar algo grande.
 
 ## Ambiente de desenvolvimento

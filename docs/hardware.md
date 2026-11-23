@@ -92,6 +92,8 @@ Não mande `SET_REPORT` para a interface 5 com dados inventados. Comandos errado
 
 ### Como capturar o protocolo
 
+O passo a passo completo, com comandos e a lista de capturas por função, está em [diagnostico.md](diagnostico.md). Resumo:
+
 1. No Windows, instale o [USBPcap](https://desowin.org/usbpcap/) e o [Wireshark](https://www.wireshark.org/).
 2. Abra o FIFINE Genie com a SC8 conectada e comece a captura no hub da mesa.
 3. Mude **uma** opção por vez (um preset de EQ, um modo de voz, uma cor) e anote a hora de cada mudança.
